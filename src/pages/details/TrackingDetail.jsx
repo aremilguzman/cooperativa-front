@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import axios from 'axios';
 import { Card, Button, Alert, Spinner, Row, Col } from 'react-bootstrap';
 import { FaArrowLeft, FaMoneyBill } from 'react-icons/fa';
+import api from '../../api/api';
 
 function TrackingDetail() {
   const [tracking, setTracking] = useState(null);
@@ -14,7 +14,7 @@ function TrackingDetail() {
     const fetchTracking = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:3000/api/trackings/${id}`);
+        const response = await api.get(`/trackings/${id}`);
         if (response.data && response.data.msg) {
           setTracking(response.data.msg);
         } else {

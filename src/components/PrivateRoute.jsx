@@ -7,7 +7,7 @@ function PrivateRoute() {
 
   // Si el usuario está autenticado, renderiza el componente hijo (Outlet),
   // de lo contrario redirige a /login.
-  return currentUser ? <Outlet /> : <Navigate to="/login" />;
+  return currentUser ? <Outlet /> : <Navigate to="/login" replace />;
 }
 
 export default PrivateRoute;

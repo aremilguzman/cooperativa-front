@@ -7,18 +7,18 @@ import {
 } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Dashboard from "./components/Dashboard";
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
 import "bootstrap/dist/css/bootstrap.min.css";
-import PartnerDetail from "./components/PartnerDetail";
-import LoanDetail from "./components/LoanDetail";
-import TrackingDetail from "./components/TrackingDetail";
+import PartnerDetail from "./pages/details/PartnerDetail";
+import LoanDetail from "./pages/details/LoanDetail";
+import TrackingDetail from "./pages/details/TrackingDetail";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 function App() {
   return (
-    <AuthProvider>
       <Router>
+    <AuthProvider>
         <Routes>
           {/* Rutas públicas */}
           <Route path="/login" element={<Login />} />
@@ -35,8 +35,8 @@ function App() {
           {/* Redirección por defecto */}
           <Route path="/" element={<Navigate to="/login" />} />
         </Routes>
-      </Router>
     </AuthProvider>
+      </Router>
   );
 }
 

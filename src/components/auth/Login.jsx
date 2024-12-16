@@ -1,31 +1,47 @@
-import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
-import { useNavigate, Link } from 'react-router-dom';
-import { Form, Button, Card, Alert } from 'react-bootstrap';
+import React, { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate, Link } from "react-router-dom";
+import { Form, Button, Card, Alert } from "react-bootstrap";
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState([]);
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors([]);
     try {
       await login(email, password);
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (error) {
-      setError(error.message || 'Failed to log in');
+      // Si el error es un string, lo convertimos en un array
+      if (typeof error === "string") {
+        setErrors([error]);
+      } else if (Array.isArray(error)) {
+        setErrors(error);
+      } else {
+        setErrors(["Ocurrió un error inesperado."]);
+      }
     }
   };
 
   return (
     <div className="min-vh-100 d-flex align-items-center justify-content-center bg-light">
-      <Card className="shadow-lg" style={{ width: '100%', maxWidth: '400px' }}>
+      <Card className="shadow-lg" style={{ width: "100%", maxWidth: "400px" }}>
         <Card.Body className="p-4">
           <h4 className="text-center mb-4">LOGIN</h4>
-          {error && <Alert variant="danger">{error}</Alert>}
+          {Array.isArray(errors) && errors.length > 0 && (
+            <Alert variant="danger">
+              <ul className="mb-0">
+                {errors.map((err, index) => (
+                  <li key={index}>{err}</li>
+                ))}
+              </ul>
+            </Alert>
+          )}
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>Email:</Form.Label>
@@ -47,22 +63,18 @@ function Login() {
                 required
               />
             </Form.Group>
-            <Button 
-              variant="success" 
-              type="submit" 
+            <Button
+              variant="success"
+              type="submit"
               className="w-100 mb-3"
-              style={{ backgroundColor: '#008000' }}
+              style={{ backgroundColor: "#008000" }}
             >
               Login
             </Button>
             <div className="text-center">
               <div className="mb-2">Don't have an Account?</div>
               <Link to="/register">
-                <Button 
-                  variant="link" 
-                  className="w-100"
-                  
-                >
+                <Button variant="link" className="w-100">
                   Sign Up
                 </Button>
               </Link>
@@ -75,4 +87,3 @@ function Login() {
 }
 
 export default Login;
-

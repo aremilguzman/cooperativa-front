@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 
@@ -7,17 +7,22 @@ function Register() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [errors, setErrors] = useState([]);
   const { register } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors([]); 
     try {
       await register(username, email, password);
       navigate('/login');
     } catch (error) {
-      setError(error.message || 'Failed to create an account');
+      if (error.errors) {
+        setErrors(error.errors); 
+      } else {
+        setErrors(['Failed to create an account']);
+      }
     }
   };
 
@@ -26,7 +31,15 @@ function Register() {
       <Card className="shadow-lg" style={{ width: '100%', maxWidth: '400px' }}>
         <Card.Body className="p-4">
           <h4 className="text-center mb-4">SIGN UP</h4>
-          {error && <Alert variant="danger">{error}</Alert>}
+          {errors.length > 0 && (
+            <Alert variant="danger">
+              <ul className="mb-0">
+                {errors.map((err, index) => (
+                  <li key={index}>{err}</li>
+                ))}
+              </ul>
+            </Alert>
+          )}
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>Name:</Form.Label>
