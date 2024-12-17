@@ -32,7 +32,7 @@ function Login() {
     <div className="min-vh-100 d-flex align-items-center justify-content-center bg-light">
       <Card className="shadow-lg" style={{ width: "100%", maxWidth: "400px" }}>
         <Card.Body className="p-4">
-          <h4 className="text-center mb-4">LOGIN</h4>
+          <h4 className="text-center mb-4">INICIAR SESIÓN</h4>
           {Array.isArray(errors) && errors.length > 0 && (
             <Alert variant="danger">
               <ul className="mb-0">
@@ -44,20 +44,20 @@ function Login() {
           )}
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
-              <Form.Label>Email:</Form.Label>
+              <Form.Label>Correo Electrónico:</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="Enter your Email"
+                placeholder="Ingresar correo"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </Form.Group>
             <Form.Group className="mb-4">
-              <Form.Label>Password:</Form.Label>
+              <Form.Label>Contraseña:</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Enter Password"
+                placeholder="Ingresar contraseña"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -69,13 +69,13 @@ function Login() {
               className="w-100 mb-3"
               style={{ backgroundColor: "#008000" }}
             >
-              Login
+              Iniciar Sesión
             </Button>
             <div className="text-center">
-              <div className="mb-2">Don't have an Account?</div>
+              <div className="mb-2">No tienes una cuenta?</div>
               <Link to="/register">
                 <Button variant="link" className="w-100">
-                  Sign Up
+                  Resgístrate
                 </Button>
               </Link>
             </div>

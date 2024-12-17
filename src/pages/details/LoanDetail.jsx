@@ -48,13 +48,13 @@ function LoanDetail() {
   }
 
   if (!loan) {
-    return <Alert variant="warning">No loan data available.</Alert>;
+    return <Alert variant="warning">No hay datos de prestamo disponible.</Alert>;
   }
 
   return (
     <div
       style={{
-        backgroundColor: "#dfdfdf", // Cambia este color al que desees
+        backgroundColor: "#dfdfdf", 
         minHeight: "100vh",
       }}
       className="d-flex justify-content-center align-items-center"
@@ -68,7 +68,7 @@ function LoanDetail() {
                 <div className="text-center">{loan.pid}</div>
               </div>
               <div className="text-end">
-                <div className="text-muted small">Created At</div>
+                <div className="text-muted small">Creado En:</div>
                 <div className="fw-bold">
                   {new Date(loan.fecha_creacion).toLocaleDateString()}
                 </div>
@@ -78,22 +78,22 @@ function LoanDetail() {
             <Row className="g-4">
               <Col md={6}>
                 <div className="mb-3">
-                  <div className="text-muted small">Partner Name</div>
+                  <div className="text-muted small">Nombre del Socio</div>
                   <div className="fw-bold">{loan.socio_nombre}</div>
                 </div>
                 <div className="mb-3">
-                  <div className="text-muted small">Amount</div>
+                  <div className="text-muted small">Monto</div>
                   <div className="fw-bold">${loan.amount}</div>
                 </div>
               </Col>
               <Col md={6}>
                 <div className="mb-3">
-                  <div className="text-muted small">Interest Rate</div>
+                  <div className="text-muted small">Tasa de Interes</div>
                   <div className="fw-bold">{loan.interest_rate}%</div>
                 </div>
                 <div className="mb-3">
-                  <div className="text-muted small">Duration</div>
-                  <div className="fw-bold">{loan.duration} months</div>
+                  <div className="text-muted small">Duración</div>
+                  <div className="fw-bold">{loan.duration} meses</div>
                 </div>
               </Col>
             </Row>
@@ -102,13 +102,13 @@ function LoanDetail() {
               <Link to="/dashboard">
                 <Button variant="dark">
                   <FaArrowLeft className="me-2" />
-                  Back to Dashboard
+                  Volver al Panel
                 </Button>
               </Link>
               <Link to={`/partners/${loan.socio_id}`}>
                 <Button variant="success">
                   <FaUser className="me-2" />
-                  View Partner
+                  Ver Socio
                 </Button>
               </Link>
             </div>

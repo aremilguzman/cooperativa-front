@@ -48,13 +48,13 @@ function PartnerDetail() {
   }
 
   if (!partner) {
-    return <Alert variant="warning">No partner data available.</Alert>;
+    return <Alert variant="warning">No hay información disponible.</Alert>;
   }
 
   return (
     <div
       style={{
-        backgroundColor: "#dfdfdf", // Cambia este color al que desees
+        backgroundColor: "#dfdfdf", 
         minHeight: "100vh",
       }}
       className="d-flex justify-content-center align-items-center"
@@ -68,7 +68,7 @@ function PartnerDetail() {
                 <div className="text-center">{partner.sid}</div>
               </div>
               <div className="text-end">
-                <div className="text-muted small">Created At</div>
+                <div className="text-muted small">Creado En</div>
                 <div className="fw-bold">
                   {new Date(partner.created_at).toLocaleDateString()}
                 </div>
@@ -78,21 +78,21 @@ function PartnerDetail() {
             <Row className="g-4">
               <Col md={6}>
                 <div className="mb-3">
-                  <div className="text-muted small">Full Name</div>
+                  <div className="text-muted small">Nombre Completo</div>
                   <div className="fw-bold">{partner.full_name}</div>
                 </div>
                 <div className="mb-3">
-                  <div className="text-muted small">Email</div>
+                  <div className="text-muted small">Correo Electrónico</div>
                   <div className="fw-bold">{partner.email}</div>
                 </div>
               </Col>
               <Col md={6}>
                 <div className="mb-3">
-                  <div className="text-muted small">Phone</div>
+                  <div className="text-muted small">Teléfono</div>
                   <div className="fw-bold">{partner.phone}</div>
                 </div>
                 <div className="mb-3">
-                  <div className="text-muted small">Address</div>
+                  <div className="text-muted small">Dirección</div>
                   <div className="fw-bold">{partner.address}</div>
                 </div>
               </Col>
@@ -102,7 +102,7 @@ function PartnerDetail() {
               <Link to="/dashboard">
                 <Button variant="dark">
                   <FaArrowLeft className="me-2" />
-                  Back to Dashboard
+                  Volver al panel
                 </Button>
               </Link>
             </div>

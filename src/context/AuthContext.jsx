@@ -28,10 +28,7 @@ export function AuthProvider({ children }) {
     const responseInterceptor = api.interceptors.response.use(
       (response) => response,
       (error) => {
-        if (
-          error.response &&
-          (error.response.status === 401 || error.response.status === 400)
-        ) {
+        if (error.response && error.response.status === 401) {
           console.log("Token expirado o inválido. Redirigiendo al login...");
           logout();
           navigate("/login");
@@ -79,7 +76,14 @@ export function AuthProvider({ children }) {
       });
       return response.data;
     } catch (error) {
-      throw error.response.data;
+      
+      if (error.response && Array.isArray(error.response.data.errors)) {
+        throw { errors: error.response.data.errors }; 
+      } else if (error.response && error.response.data.msg) {
+        throw { errors: [error.response.data.msg] }; 
+      } else {
+        throw { errors: ["Ocurrió un error inesperado."] }; 
+      }
     }
   };
 

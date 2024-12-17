@@ -4,10 +4,11 @@ import { Form, Button } from "react-bootstrap";
 //Componente para agregar socios
 const PartnerForm = ({ formData, onChange, onSubmit, onCancel, isEditing }) => {
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={onSubmit} role="form">
       <Form.Group className="mb-3">
-        <Form.Label>Nombre Completo</Form.Label>
+        <Form.Label htmlFor="full_name">Nombre Completo</Form.Label>
         <Form.Control
+          id="full_name"
           type="text"
           name="full_name"
           value={formData.full_name}
@@ -16,8 +17,9 @@ const PartnerForm = ({ formData, onChange, onSubmit, onCancel, isEditing }) => {
         />
       </Form.Group>
       <Form.Group className="mb-3">
-        <Form.Label>Correo Electrónico</Form.Label>
+        <Form.Label htmlFor="email">Correo Electrónico</Form.Label>
         <Form.Control
+          id="email"
           type="email"
           name="email"
           value={formData.email}
@@ -26,8 +28,9 @@ const PartnerForm = ({ formData, onChange, onSubmit, onCancel, isEditing }) => {
         />
       </Form.Group>
       <Form.Group className="mb-3">
-        <Form.Label>Teléfono</Form.Label>
+        <Form.Label htmlFor="phone">Teléfono</Form.Label>
         <Form.Control
+          id="phone"
           type="tel"
           name="phone"
           value={formData.phone}
@@ -36,8 +39,9 @@ const PartnerForm = ({ formData, onChange, onSubmit, onCancel, isEditing }) => {
         />
       </Form.Group>
       <Form.Group className="mb-3">
-        <Form.Label>Dirección</Form.Label>
+        <Form.Label htmlFor="address">Dirección</Form.Label>
         <Form.Control
+          id="address"
           type="text"
           name="address"
           value={formData.address}

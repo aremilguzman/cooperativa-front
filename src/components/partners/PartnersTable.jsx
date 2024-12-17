@@ -26,17 +26,19 @@ const PartnersTable = ({ partners, onEdit, onDelete, currentUser }) => {
                 <Link
                   to={`/partners/${partner.sid}`}
                   className="btn btn-info btn-sm"
+                  data-testid={`view-button-${partner.sid}`}
                 >
                   <FaEye />
                 </Link>
                 <Button
-                      variant="warning"
-                      size="sm"
-                      className="ms-2"
-                      onClick={() => onEdit(partner)}
-                    >
-                      <FaEdit />
-                    </Button>
+                  variant="warning"
+                  size="sm"
+                  className="ms-2"
+                  onClick={() => onEdit(partner)}
+                  data-testid={`edit-button-${partner.sid}`}
+                >
+                  <FaEdit />
+                </Button>
                 {currentUser.role_id === 1 && (
                   <>
                     <Button
@@ -44,6 +46,7 @@ const PartnersTable = ({ partners, onEdit, onDelete, currentUser }) => {
                       size="sm"
                       className="ms-2"
                       onClick={() => onDelete(partner.sid)}
+                      data-testid={`delete-button-${partner.sid}`}
                     >
                       <FaTrash />
                     </Button>

@@ -45,12 +45,12 @@ function TrackingDetail() {
   }
 
   if (!tracking) {
-    return <Alert variant="warning">No tracking data available.</Alert>;
+    return <Alert variant="warning">No hay datos de seguimiento disponible.</Alert>;
   }
 
   return (
     <div style={{
-      backgroundColor: "#dfdfdf", // Cambia este color al que desees
+      backgroundColor: "#dfdfdf", 
       minHeight: "100vh",
     }}
     className="d-flex justify-content-center align-items-center">
@@ -63,7 +63,7 @@ function TrackingDetail() {
               <div className="text-center">{tracking.tid}</div>
             </div>
             <div className="text-end">
-              <div className="text-muted small">Created At</div>
+              <div className="text-muted small">Creado En</div>
               <div className="fw-bold">{new Date(tracking.created_at).toLocaleDateString()}</div>
             </div>
           </div>
@@ -71,21 +71,21 @@ function TrackingDetail() {
           <Row className="g-4">
             <Col md={6}>
               <div className="mb-3">
-                <div className="text-muted small">Date</div>
+                <div className="text-muted small">Fecha</div>
                 <div className="fw-bold">{new Date(tracking.t_date).toLocaleDateString()}</div>
               </div>
               <div className="mb-3">
-                <div className="text-muted small">Status</div>
+                <div className="text-muted small">Estado</div>
                 <div className="fw-bold">{tracking.status}</div>
               </div>
             </Col>
             <Col md={6}>
               <div className="mb-3">
-                <div className="text-muted small">Loan Amount</div>
+                <div className="text-muted small">Monto del prestamo</div>
                 <div className="fw-bold">${tracking.prestamo_monto}</div>
               </div>
               <div className="mb-3">
-                <div className="text-muted small">Notes</div>
+                <div className="text-muted small">Notas</div>
                 <div className="fw-bold">{tracking.notas || 'N/A'}</div>
               </div>
             </Col>
@@ -95,13 +95,13 @@ function TrackingDetail() {
             <Link to="/dashboard">
               <Button variant="dark">
                 <FaArrowLeft className="me-2" />
-                Back to Dashboard
+                Volver al panel
               </Button>
             </Link>
             <Link to={`/loans/${tracking.prestamo_id}`}>
               <Button variant="success">
                 <FaMoneyBill className="me-2" />
-                View Loan
+                Ver Prestamo
               </Button>
             </Link>
           </div>
